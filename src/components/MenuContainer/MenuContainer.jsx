@@ -8,6 +8,7 @@ import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import PopperItem from "../PopperItem/PopperItem";
+import Login from "../Login/Login";
 
 const MenuContainer = () => {
   const [accountActive, setAccountActive] = useState(false);
@@ -122,6 +123,7 @@ const MenuContainer = () => {
         open={openPopUp}
         handleClose={accountHandleClose}
         borderRadius={"0.2rem"}
+        element={<Login />}
       />
     </Container>
   );

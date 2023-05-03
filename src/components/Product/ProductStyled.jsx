@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ProductContainer = styled.div`
   border-radius: 16px;
-  background: transparent;
+  background: #ffffff;
   border: 0.1rem solid #a1a0a0;
   margin: 5px;
   position: relative;
