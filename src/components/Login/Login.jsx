@@ -15,6 +15,8 @@ import ReplyIcon from "@mui/icons-material/Reply";
 export default function Login() {
   const [loading, setLoading] = useState(false);
   const [disBtn, setDisBtn] = useState(true);
+  const [errTxtMsg, setErrTxtMsg] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
   const [addOTPInput, setAddOTPInput] = useState(false);
   const [loginType, setLoginType] = useState({
     type: "login",
@@ -33,7 +35,7 @@ export default function Login() {
     forgotEmail: "",
     otp: "",
     rName: "",
-    rEmailL: "",
+    rEmail: "",
     rUserId: "",
     rPhone: "",
     registerPassword: "",
@@ -142,7 +144,7 @@ export default function Login() {
       forgotEmail: "",
       otp: "",
       rName: "",
-      rEmailL: "",
+      rEmail: "",
       rUserId: "",
       rPhone: "",
       registerPassword: "",
@@ -163,7 +165,7 @@ export default function Login() {
       forgotEmail: "",
       otp: "",
       rName: "",
-      rEmailL: "",
+      rEmail: "",
       rUserId: "",
       rPhone: "",
       registerPassword: "",
@@ -183,6 +185,66 @@ export default function Login() {
       headerText: "Register",
       btnTxt: "Submit",
     });
+  };
+
+  const checkInputFields = () => {
+    let errText = [];
+
+    // Name
+    if (values.rName === "") {
+      errText.push("Name");
+    } else {
+      errText.filter((val) => val !== "Name");
+    }
+
+    // Email
+    if (values.rEmail === "") {
+      errText.push("Email");
+    } else {
+      errText.filter((val) => val !== "Email");
+    }
+
+    // User Id
+    if (values.rUserId === "") {
+      errText.push("User Id");
+    } else {
+      errText.filter((val) => val !== "User Id");
+    }
+
+    // Phone
+    if (values.rPhone === "") {
+      errText.push("Phone");
+    } else {
+      errText.filter((val) => val !== "Phone");
+    }
+
+    // Password
+    if (values.registerPassword === "") {
+      errText.push("Password");
+    } else {
+      errText.filter((val) => val !== "Password");
+    }
+
+    // Address
+    if (values.rAddress === "") {
+      errText.push("Address");
+    } else {
+      errText.filter((val) => val !== "Address");
+    }
+
+    if (errText.length === 0) {
+      setErrTxtMsg("");
+      setDisBtn(false);
+    } else {
+      setErrTxtMsg(
+        errText.length === 1
+          ? `* Please add ${errText[0]}`
+          : errText.length === 2
+          ? `* Please add ${errText.join(" and ")}`
+          : `* Please add ${errText.slice(0, errText.length - 1).join(" ,")} and ${errText[errText.length - 1]}`
+      );
+      setDisBtn(true);
+    }
   };
 
   useEffect(() => {
@@ -206,9 +268,12 @@ export default function Login() {
       } else {
         setDisBtn(true);
       }
+    } else if (loginType.type === "register") {
+      checkInputFields();
     } else {
       setDisBtn(true);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [values, loginType, addOTPInput]);
 
   useEffect(() => {
@@ -232,7 +297,7 @@ export default function Login() {
             <React.Fragment>
               <TextField
                 disabled={loading}
-                id="outlined-basic"
+                id="userId"
                 label="User Id"
                 variant="outlined"
                 value={values.userId}
@@ -247,7 +312,7 @@ export default function Login() {
                 </InputLabel>
                 <OutlinedInput
                   disabled={loading}
-                  id="outlined-adornment-password"
+                  id="password"
                   type={values.showPassword ? "text" : "password"}
                   value={values.password}
                   onChange={handleChange("password")}
@@ -276,7 +341,7 @@ export default function Login() {
             <React.Fragment>
               <TextField
                 disabled={loading}
-                id="outlined-basic"
+                id="emailId"
                 label="Email Id"
                 variant="outlined"
                 value={values.forgotEmail}
@@ -290,7 +355,7 @@ export default function Login() {
                 <React.Fragment>
                   <TextField
                     disabled={loading}
-                    id="outlined-basic"
+                    id="otp"
                     label="OTP"
                     variant="outlined"
                     value={values.otp}
@@ -312,7 +377,7 @@ export default function Login() {
                 </InputLabel>
                 <OutlinedInput
                   disabled={loading}
-                  id="outlined-adornment-password"
+                  id="new-password"
                   type={values.newShowPassword ? "text" : "password"}
                   value={values.newPassword}
                   onChange={handleChange("newPassword")}
@@ -341,7 +406,7 @@ export default function Login() {
                 </InputLabel>
                 <OutlinedInput
                   disabled={loading}
-                  id="outlined-adornment-password"
+                  id="confirm-password"
                   type={values.confirmShowPassword ? "text" : "password"}
                   value={values.confirmPassword}
                   onChange={handleChange("confirmPassword")}
@@ -485,6 +550,12 @@ export default function Login() {
               onClick={handleClickSubmit}
               disabled={disBtn}
               disBtn={disBtn}
+              onMouseOver={() =>
+                loginType.type === "register" ? setShowAlert(true) : {}
+              }
+              onMouseOut={() =>
+                loginType.type === "register" ? setShowAlert(false) : {}
+              }
             >
               {loading ? (
                 <CircularProgress size={20} color="inherit" />
@@ -494,6 +565,9 @@ export default function Login() {
             </LoginBtn>
           )}
         </ButtonSection>
+        <AlertSection display={showAlert ? "block" : "none"}>
+          <h5>{errTxtMsg}</h5>
+        </AlertSection>
         <LoginOptions
           adjustRight={
             loginType.type === "forgot" ? false : loginType.type !== "login"
@@ -680,4 +754,15 @@ const RegCont = styled.div`
 
 const UploadImage = styled.div`
   padding: 2rem;
+`;
+
+const AlertSection = styled.div`
+  height: 2rem;
+  margin: 0.5rem 0;
+  h5 {
+    font-weight: 500;
+    color: red;
+    display: ${(props) => (props.display)};
+    font-size: 0.7rem;
+  }
 `;

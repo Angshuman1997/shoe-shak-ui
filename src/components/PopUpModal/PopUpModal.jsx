@@ -33,7 +33,7 @@ export default function PopUpModal({ open, handleClose, borderRadius, element = 
               boxShadow: 24,
               outline: "none",
               p: 4,
-              height: "30rem",
+              height: "33rem",
             }}
           >
               {element}
