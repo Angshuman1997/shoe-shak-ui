@@ -23,7 +23,6 @@ export const Logo = styled.div`
 `;
 
 export const SubMenu = styled.div`
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

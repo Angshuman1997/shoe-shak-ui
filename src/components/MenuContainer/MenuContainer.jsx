@@ -24,7 +24,6 @@ const MenuContainer = () => {
     if (localStorage.getItem("logined")) {
       console.log("go to /account");
     } else {
-      console.log("open login popup");
       setOpenPopUp(true);
     }
     setAccountActive((prev) => !prev);
@@ -83,7 +82,7 @@ const MenuContainer = () => {
               }
             }}
             btnInnerContent={<FilterAltOutlinedIcon />}
-            popPosition={{ horizontal: "right" }}
+            popPosition={{ vertical: 'top', horizontal: "right" }}
             innerContent={"I am Angshuman"}
           />
           <PopperItem
@@ -108,7 +107,7 @@ const MenuContainer = () => {
               }
             }}
             btnInnerContent={<SettingsSuggestIcon />}
-            popPosition={{ horizontal: "right" }}
+            popPosition={{ vertical: 'top', horizontal: "right" }}
             innerContent={"I am Angshuman"}
           />
           <IconButton active={wishListActive} onClick={() => WishListFunc()}>

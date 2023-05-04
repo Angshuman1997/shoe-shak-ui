@@ -13,7 +13,7 @@ import ReactTextTransition from "react-text-transition";
 import ReplyIcon from "@mui/icons-material/Reply";
 import CloseIcon from "@mui/icons-material/Close";
 
-export default function Login({handleOnClickClose}) {
+export default function Login({ handleOnClickClose }) {
   const [loading, setLoading] = useState(false);
   const [disBtn, setDisBtn] = useState(true);
   const [errTxtMsg, setErrTxtMsg] = useState("");
@@ -266,7 +266,7 @@ export default function Login({handleOnClickClose}) {
         setDisBtn(true);
       }
     } else if (loginType.type === "reset") {
-      if (values.newPassword === values.confirmPassword) {
+      if (values.newPassword === values.confirmPassword && values.newPassword !== "") {
         setDisBtn(false);
       } else {
         setDisBtn(true);
@@ -562,6 +562,12 @@ export default function Login({handleOnClickClose}) {
               onClick={handleClickSubmit}
               disabled={disBtn}
               disBtn={disBtn}
+              onTouchEnd={() => {
+                if(loginType.type === "register") {
+                  setShowAlert(true); 
+                }
+              }
+              }
               onMouseOver={() =>
                 loginType.type === "register" ? setShowAlert(true) : {}
               }
@@ -676,7 +682,7 @@ const Content = styled.div`
 `;
 
 const LoginBtn = styled.button`
-  padding: 0.7rem 1rem;
+padding: 0.7rem 1rem;
   font-size: 1.3rem;
   font-family: sans-serif;
   font-weight: 700;
