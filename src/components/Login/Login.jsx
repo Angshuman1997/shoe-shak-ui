@@ -104,12 +104,7 @@ export default function Login() {
         });
       }
     } else if (loginType.type === "reset") {
-      setAddOTPInput(false);
-      setLoginType({
-        type: "passUpComplete",
-        headerText: "Process Completed",
-        btnTxt: "",
-      });
+      handleOnClickBackLogin();
     }
   };
 
@@ -213,7 +208,9 @@ export default function Login() {
         </h1>
       </Header>
       <Content>
-        <form onSubmit={handleClickSubmit}>
+        <form
+          className={`${loginType.type === "register" ? "add-scroll" : ""}`}
+        >
           {loginType.type === "login" && (
             <React.Fragment>
               <TextField
@@ -433,8 +430,14 @@ export default function Login() {
               </FormControl>
             </React.Fragment>
           )}
+        </form>
+        <ButtonSection>
           {loginType.btnTxt !== "" && (
-            <LoginBtn type="submit" disabled={disBtn} disBtn={disBtn}>
+            <LoginBtn
+              onClick={handleClickSubmit}
+              disabled={disBtn}
+              disBtn={disBtn}
+            >
               {loading ? (
                 <CircularProgress size={20} color="inherit" />
               ) : (
@@ -442,7 +445,7 @@ export default function Login() {
               )}
             </LoginBtn>
           )}
-        </form>
+        </ButtonSection>
         <LoginOptions
           adjustRight={
             loginType.type === "forgot" ? false : loginType.type !== "login"
@@ -513,11 +516,18 @@ const Content = styled.div`
     flex-direction: column;
     align-items: center;
     grid-row-gap: 1rem;
+    height: 14rem;
   }
   h4 {
     font-size: 0.8rem;
     font-weight: 500;
     color: red;
+  }
+
+  .add-scroll {
+    overflow: hidden scroll;
+    margin-bottom: 2rem;
+    height: 12rem;
   }
 `;
 
@@ -588,6 +598,12 @@ const ReEnterEmail = styled.button`
   font-weight: 600;
   font-family: inherit;
   cursor: ${(props) => (props.disBtn ? "not-allowed" : "pointer")};
+`;
+
+const ButtonSection = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const UploadImage = styled.div``;
