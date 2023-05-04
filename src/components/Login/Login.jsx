@@ -21,12 +21,22 @@ export default function Login() {
     headerText: "Login",
     btnTxt: "Login",
   });
-  const [values, setValues] = React.useState({
+  const [values, setValues] = useState({
     userId: "",
     password: "",
     showPassword: false,
+    newShowPassword: false,
+    registerShowPassword: false,
+    newPassword: "",
+    confirmPassword: "",
+    confirmShowPassword: false,
     forgotEmail: "",
     otp: "",
+    rName: "",
+    rEmailL: "",
+    rUserId: "",
+    rPhone: "",
+    registerPassword: "",
   });
 
   const handleChange = (prop) => (event) => {
@@ -37,6 +47,27 @@ export default function Login() {
     setValues({
       ...values,
       showPassword: !values.showPassword,
+    });
+  };
+
+  const handleClickNewShowPassword = () => {
+    setValues({
+      ...values,
+      newShowPassword: !values.newShowPassword,
+    });
+  };
+
+  const handleClickConfirmShowPassword = () => {
+    setValues({
+      ...values,
+      confirmShowPassword: !values.confirmShowPassword,
+    });
+  };
+
+  const handleClickRegisterShowPassword = () => {
+    setValues({
+      ...values,
+      registerPassword: !values.registerPassword,
     });
   };
 
@@ -72,7 +103,74 @@ export default function Login() {
           btnTxt: "Verify",
         });
       }
+    } else if (loginType.type === "reset") {
+      setAddOTPInput(false);
+      setLoginType({
+        type: "passUpComplete",
+        headerText: "Process Completed",
+        btnTxt: "",
+      });
     }
+  };
+
+  const handleOnClickBackLogin = () => {
+    setAddOTPInput(false);
+    setLoginType({
+      type: "login",
+      headerText: "Login",
+      btnTxt: "Login",
+    });
+    setValues({
+      userId: "",
+      password: "",
+      showPassword: false,
+      newShowPassword: false,
+      registerShowPassword: false,
+      newPassword: "",
+      confirmPassword: "",
+      confirmShowPassword: false,
+      forgotEmail: "",
+      otp: "",
+      rName: "",
+      rEmailL: "",
+      rUserId: "",
+      rPhone: "",
+      registerPassword: "",
+    });
+  };
+
+  const handleReEnterEmail = () => {
+    setValues({
+      userId: "",
+      password: "",
+      showPassword: false,
+      newShowPassword: false,
+      registerShowPassword: false,
+      newPassword: "",
+      confirmPassword: "",
+      confirmShowPassword: false,
+      forgotEmail: "",
+      otp: "",
+      rName: "",
+      rEmailL: "",
+      rUserId: "",
+      rPhone: "",
+      registerPassword: "",
+    });
+    setAddOTPInput(false);
+    setLoginType({
+      type: "forgot",
+      headerText: "Forgot Password",
+      btnTxt: "Submit",
+    });
+  };
+
+  const handleClickRegister = () => {
+    setLoginType({
+      type: "register",
+      headerText: "Register",
+      btnTxt: "Submit",
+    });
   };
 
   useEffect(() => {
@@ -90,6 +188,14 @@ export default function Login() {
       } else {
         setDisBtn(true);
       }
+    } else if (loginType.type === "reset") {
+      if (values.newPassword === values.confirmPassword) {
+        setDisBtn(false);
+      } else {
+        setDisBtn(true);
+      }
+    } else {
+      setDisBtn(true);
     }
   }, [values, loginType, addOTPInput]);
 
@@ -184,15 +290,164 @@ export default function Login() {
               )}
             </React.Fragment>
           )}
-          <LoginBtn type="submit" disabled={disBtn} disBtn={disBtn}>
-            {loading ? (
-              <CircularProgress size={20} color="inherit" />
-            ) : (
-              <LoginBtnTxt>{loginType.btnTxt}</LoginBtnTxt>
-            )}
-          </LoginBtn>
+          {loginType.type === "reset" && (
+            <React.Fragment>
+              <FormControl sx={{ m: 1, width: "100%" }} variant="outlined">
+                <InputLabel htmlFor="outlined-adornment-password">
+                  New Password
+                </InputLabel>
+                <OutlinedInput
+                  disabled={loading}
+                  id="outlined-adornment-password"
+                  type={values.newShowPassword ? "text" : "password"}
+                  value={values.newPassword}
+                  onChange={handleChange("newPassword")}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickNewShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {values.newShowPassword ? (
+                          <VisibilityOff />
+                        ) : (
+                          <Visibility />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="New Password"
+                />
+              </FormControl>
+              <FormControl sx={{ m: 1, width: "100%" }} variant="outlined">
+                <InputLabel htmlFor="outlined-adornment-password">
+                  Confirm Password
+                </InputLabel>
+                <OutlinedInput
+                  disabled={loading}
+                  id="outlined-adornment-password"
+                  type={values.confirmShowPassword ? "text" : "password"}
+                  value={values.confirmPassword}
+                  onChange={handleChange("confirmPassword")}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickConfirmShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {values.confirmShowPassword ? (
+                          <VisibilityOff />
+                        ) : (
+                          <Visibility />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="Confirm Password"
+                />
+              </FormControl>
+            </React.Fragment>
+          )}
+          {loginType.type === "passUpComplete" && (
+            <h4>* Your new password has been updated</h4>
+          )}
+          {loginType.type === "register" && (
+            <React.Fragment>
+              <UploadImage>Upload Image Section</UploadImage>
+              <TextField
+                disabled={loading}
+                id="outlined-basic"
+                label="Name"
+                variant="outlined"
+                value={values.rName}
+                onChange={handleChange("rName")}
+                sx={{
+                  width: "100%",
+                }}
+              />
+              <TextField
+                disabled={loading}
+                id="outlined-basic"
+                label="Email"
+                variant="outlined"
+                value={values.rEmail}
+                onChange={handleChange("rEmail")}
+                sx={{
+                  width: "100%",
+                }}
+              />
+              <TextField
+                disabled={loading}
+                id="outlined-basic"
+                label="User ID"
+                variant="outlined"
+                value={values.rUserId}
+                onChange={handleChange("rUserId")}
+                sx={{
+                  width: "100%",
+                }}
+              />
+              <TextField
+                disabled={loading}
+                id="outlined-basic"
+                label="Phone"
+                variant="outlined"
+                value={values.rPhone}
+                onChange={handleChange("rPhone")}
+                sx={{
+                  width: "100%",
+                }}
+              />
+              <FormControl sx={{ m: 1, width: "100%" }} variant="outlined">
+                <InputLabel htmlFor="outlined-adornment-password">
+                  Password
+                </InputLabel>
+                <OutlinedInput
+                  disabled={loading}
+                  id="outlined-adornment-password"
+                  type={values.registerShowPassword ? "text" : "password"}
+                  value={values.registerPassword}
+                  onChange={handleChange("registerPassword")}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickRegisterShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        edge="end"
+                      >
+                        {values.registerShowPassword ? (
+                          <VisibilityOff />
+                        ) : (
+                          <Visibility />
+                        )}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label="Password"
+                />
+              </FormControl>
+            </React.Fragment>
+          )}
+          {loginType.btnTxt !== "" && (
+            <LoginBtn type="submit" disabled={disBtn} disBtn={disBtn}>
+              {loading ? (
+                <CircularProgress size={20} color="inherit" />
+              ) : (
+                <LoginBtnTxt>{loginType.btnTxt}</LoginBtnTxt>
+              )}
+            </LoginBtn>
+          )}
         </form>
-        <LoginOptions backToLogin={loginType.type !== "login"}>
+        <LoginOptions
+          adjustRight={
+            loginType.type === "forgot" ? false : loginType.type !== "login"
+          }
+        >
           {loginType.type === "login" ? (
             <React.Fragment>
               <OptBtn
@@ -203,9 +458,7 @@ export default function Login() {
                 Forgot Password ?
               </OptBtn>
               <OptBtn
-                onClick={() =>
-                  setLoginType({ type: "register", headerText: "Register" })
-                }
+                onClick={handleClickRegister}
                 disabled={loading}
                 disBtn={loading}
               >
@@ -213,20 +466,25 @@ export default function Login() {
               </OptBtn>
             </React.Fragment>
           ) : (
-            <OptBtnBack
-              onClick={() =>
-                setLoginType({
-                  type: "login",
-                  headerText: "Login",
-                  btnTxt: "Login",
-                })
-              }
-              disabled={loading}
-              disBtn={loading}
-            >
-              <ReplyIcon size={20} />
-              <OptBtnBackTxt>Back To Login</OptBtnBackTxt>
-            </OptBtnBack>
+            <React.Fragment>
+              {loginType.type === "forgot" && (
+                <ReEnterEmail
+                  disabled={loading}
+                  disBtn={loading}
+                  onClick={handleReEnterEmail}
+                >
+                  Re-Enter Email
+                </ReEnterEmail>
+              )}
+              <OptBtnBack
+                onClick={handleOnClickBackLogin}
+                disabled={loading}
+                disBtn={loading}
+              >
+                <ReplyIcon size={20} />
+                <OptBtnBackTxt>Back To Login</OptBtnBackTxt>
+              </OptBtnBack>
+            </React.Fragment>
           )}
         </LoginOptions>
       </Content>
@@ -290,7 +548,7 @@ const LoginBtnTxt = styled.span`
 const LoginOptions = styled.div`
   display: flex;
   align-items: center;
-  justify-content: ${(props) => (props.backToLogin ? "end" : "space-between")};
+  justify-content: ${(props) => (props.adjustRight ? "end" : "space-between")};
   padding: 2rem 0 0 0;
 `;
 const OptBtn = styled.button`
@@ -318,3 +576,18 @@ const OptBtnBackTxt = styled.span`
   font-family: sans-serif;
   margin-top: 0.2rem;
 `;
+
+const ReEnterEmail = styled.button`
+  border: none;
+  background: none;
+  color: #dd9817;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  margin-top: 0.2rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: ${(props) => (props.disBtn ? "not-allowed" : "pointer")};
+`;
+
+const UploadImage = styled.div``;
