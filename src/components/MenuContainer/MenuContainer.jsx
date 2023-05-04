@@ -123,7 +123,7 @@ const MenuContainer = () => {
         open={openPopUp}
         handleClose={accountHandleClose}
         borderRadius={"0.2rem"}
-        element={<Login />}
+        element={<Login handleOnClickClose={accountHandleClose} />}
       />
     </Container>
   );

@@ -11,8 +11,9 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import CircularProgress from "@mui/material/CircularProgress";
 import ReactTextTransition from "react-text-transition";
 import ReplyIcon from "@mui/icons-material/Reply";
+import CloseIcon from "@mui/icons-material/Close";
 
-export default function Login() {
+export default function Login({handleOnClickClose}) {
   const [loading, setLoading] = useState(false);
   const [disBtn, setDisBtn] = useState(true);
   const [errTxtMsg, setErrTxtMsg] = useState("");
@@ -241,7 +242,9 @@ export default function Login() {
           ? `* Please add ${errText[0]}`
           : errText.length === 2
           ? `* Please add ${errText.join(" and ")}`
-          : `* Please add ${errText.slice(0, errText.length - 1).join(" ,")} and ${errText[errText.length - 1]}`
+          : `* Please add ${errText
+              .slice(0, errText.length - 1)
+              .join(" ,")} and ${errText[errText.length - 1]}`
       );
       setDisBtn(true);
     }
@@ -273,7 +276,7 @@ export default function Login() {
     } else {
       setDisBtn(true);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [values, loginType, addOTPInput]);
 
   useEffect(() => {
@@ -284,6 +287,15 @@ export default function Login() {
 
   return (
     <Container>
+      <CloseSection>
+        <CloseBtn
+          onClick={handleOnClickClose}
+          disabled={loading}
+          disBtn={loading}
+        >
+          <CloseIcon />
+        </CloseBtn>
+      </CloseSection>
       <Header>
         <h1>
           <ReactTextTransition>{loginType.headerText}</ReactTextTransition>
@@ -762,7 +774,21 @@ const AlertSection = styled.div`
   h5 {
     font-weight: 500;
     color: red;
-    display: ${(props) => (props.display)};
+    display: ${(props) => props.display};
     font-size: 0.7rem;
   }
+`;
+
+const CloseSection = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+`;
+
+const CloseBtn = styled.button`
+  border: none;
+  background: none;
+  cursor: ${(props) => (props.disBtn ? "not-allowed" : "pointer")};
 `;

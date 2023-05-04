@@ -32,8 +32,14 @@ export default function PopUpModal({ open, handleClose, borderRadius, element = 
               borderRadius: borderRadius,
               boxShadow: 24,
               outline: "none",
-              p: 4,
+              padding: "15px",
               height: "33rem",
+              '@media (max-width: 780px)': {
+                width: 300
+              },
+              '@media (max-width: 300px)': {
+                width: 250
+              }
             }}
           >
               {element}
