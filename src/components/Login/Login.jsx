@@ -37,7 +37,22 @@ export default function Login() {
     rUserId: "",
     rPhone: "",
     registerPassword: "",
+    rAddress: "",
   });
+
+  const step1 = React.useRef(null); // Name
+  const step2 = React.useRef(null); // Email
+  const step3 = React.useRef(null); // User Id
+  const step4 = React.useRef(null); // Phone
+  const step5 = React.useRef(null); // Password
+  const step6 = React.useRef(null); // Delivery Address
+
+  const scrollToStep1 = () => step1.current.scrollIntoView();
+  const scrollToStep2 = () => step2.current.scrollIntoView();
+  const scrollToStep3 = () => step3.current.scrollIntoView();
+  const scrollToStep4 = () => step4.current.scrollIntoView();
+  const scrollToStep5 = () => step5.current.scrollIntoView();
+  const scrollToStep6 = () => step6.current.scrollIntoView();
 
   const handleChange = (prop) => (event) => {
     setValues({ ...values, [prop]: event.target.value });
@@ -131,6 +146,7 @@ export default function Login() {
       rUserId: "",
       rPhone: "",
       registerPassword: "",
+      rAddress: "",
     });
   };
 
@@ -151,6 +167,7 @@ export default function Login() {
       rUserId: "",
       rPhone: "",
       registerPassword: "",
+      rAddress: "",
     });
     setAddOTPInput(false);
     setLoginType({
@@ -355,79 +372,110 @@ export default function Login() {
           {loginType.type === "register" && (
             <React.Fragment>
               <UploadImage>Upload Image Section</UploadImage>
-              <TextField
-                disabled={loading}
-                id="outlined-basic"
-                label="Name"
-                variant="outlined"
-                value={values.rName}
-                onChange={handleChange("rName")}
-                sx={{
-                  width: "100%",
-                }}
-              />
-              <TextField
-                disabled={loading}
-                id="outlined-basic"
-                label="Email"
-                variant="outlined"
-                value={values.rEmail}
-                onChange={handleChange("rEmail")}
-                sx={{
-                  width: "100%",
-                }}
-              />
-              <TextField
-                disabled={loading}
-                id="outlined-basic"
-                label="User ID"
-                variant="outlined"
-                value={values.rUserId}
-                onChange={handleChange("rUserId")}
-                sx={{
-                  width: "100%",
-                }}
-              />
-              <TextField
-                disabled={loading}
-                id="outlined-basic"
-                label="Phone"
-                variant="outlined"
-                value={values.rPhone}
-                onChange={handleChange("rPhone")}
-                sx={{
-                  width: "100%",
-                }}
-              />
-              <FormControl sx={{ m: 1, width: "100%" }} variant="outlined">
-                <InputLabel htmlFor="outlined-adornment-password">
-                  Password
-                </InputLabel>
-                <OutlinedInput
-                  disabled={loading}
-                  id="outlined-adornment-password"
-                  type={values.registerShowPassword ? "text" : "password"}
-                  value={values.registerPassword}
-                  onChange={handleChange("registerPassword")}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickRegisterShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {values.registerShowPassword ? (
-                          <VisibilityOff />
-                        ) : (
-                          <Visibility />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  label="Password"
-                />
-              </FormControl>
+              <RegCont>
+                <RegFieldInputs ref={step1}>
+                  <TextField
+                    disabled={loading}
+                    id="register-name"
+                    label="Name"
+                    variant="outlined"
+                    value={values.rName}
+                    onChange={handleChange("rName")}
+                    onFocus={scrollToStep1}
+                    sx={{
+                      width: "100%",
+                    }}
+                  />
+                </RegFieldInputs>
+                <RegFieldInputs ref={step2}>
+                  <TextField
+                    disabled={loading}
+                    id="register-email"
+                    label="Email"
+                    variant="outlined"
+                    value={values.rEmail}
+                    onChange={handleChange("rEmail")}
+                    onFocus={scrollToStep2}
+                    sx={{
+                      width: "100%",
+                    }}
+                  />
+                </RegFieldInputs>
+                <RegFieldInputs ref={step3}>
+                  <TextField
+                    disabled={loading}
+                    id="register-userid"
+                    label="User ID"
+                    variant="outlined"
+                    value={values.rUserId}
+                    onChange={handleChange("rUserId")}
+                    onFocus={scrollToStep3}
+                    sx={{
+                      width: "100%",
+                    }}
+                  />
+                </RegFieldInputs>
+                <RegFieldInputs ref={step4}>
+                  <TextField
+                    disabled={loading}
+                    id="register-phone"
+                    label="Phone"
+                    variant="outlined"
+                    value={values.rPhone}
+                    onChange={handleChange("rPhone")}
+                    onFocus={scrollToStep4}
+                    sx={{
+                      width: "100%",
+                    }}
+                  />
+                </RegFieldInputs>
+                <RegFieldInputs ref={step5}>
+                  <FormControl sx={{ width: "100%" }} variant="outlined">
+                    <InputLabel htmlFor="outlined-adornment-password">
+                      Password
+                    </InputLabel>
+                    <OutlinedInput
+                      disabled={loading}
+                      id="register-password"
+                      type={values.registerShowPassword ? "text" : "password"}
+                      value={values.registerPassword}
+                      onChange={handleChange("registerPassword")}
+                      onFocus={scrollToStep5}
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickRegisterShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                          >
+                            {values.registerShowPassword ? (
+                              <VisibilityOff />
+                            ) : (
+                              <Visibility />
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                      label="Password"
+                    />
+                  </FormControl>
+                </RegFieldInputs>
+                <RegFieldInputs ref={step6}>
+                  <TextField
+                    disabled={loading}
+                    id="register-address"
+                    label="Delivery Address"
+                    variant="outlined"
+                    value={values.rAddress}
+                    onChange={handleChange("rAddress")}
+                    onFocus={scrollToStep6}
+                    sx={{
+                      width: "100%",
+                    }}
+                  />
+                </RegFieldInputs>
+              </RegCont>
             </React.Fragment>
           )}
         </form>
@@ -525,9 +573,19 @@ const Content = styled.div`
   }
 
   .add-scroll {
-    overflow: hidden scroll;
+    overflow: hidden overlay;
     margin-bottom: 2rem;
     height: 12rem;
+    scroll-behavior: smooth;
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar {
+      width: 0px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #ffffff;
+    }
   }
 `;
 
@@ -606,4 +664,20 @@ const ButtonSection = styled.div`
   align-items: center;
 `;
 
-const UploadImage = styled.div``;
+const RegFieldInputs = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  grid-column-gap: 4%;
+  height: 5rem;
+`;
+
+const RegCont = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0 0.5rem;
+`;
+
+const UploadImage = styled.div`
+  padding: 2rem;
+`;
