@@ -1,4 +1,4 @@
-import {NOTIFICATION} from "../actionTypes/actionTypes"
+import {NOTIFICATION, OPENLOGINPOPUP} from "../actionTypes/actionTypes"
 
 const notificationFunc = (data) => {
   return {
@@ -7,4 +7,11 @@ const notificationFunc = (data) => {
   };
 };
 
-export { notificationFunc };
+const openLoginPopupFunc = (data) => {
+    return {
+      type: OPENLOGINPOPUP,
+      payload: data
+    };
+  };
+
+export { notificationFunc, openLoginPopupFunc };

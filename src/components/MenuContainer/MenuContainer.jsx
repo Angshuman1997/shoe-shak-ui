@@ -1,37 +1,27 @@
 import React, { useState } from "react";
 import { GiConverseShoe } from "react-icons/gi";
 import { Container, Logo, SubMenu, IconButton } from "./MenuContainerStyled";
-import PopUpModal from "../PopUpModal/PopUpModal";
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import LocalMallIcon from '@mui/icons-material/LocalMall';
 import PopperItem from "../PopperItem/PopperItem";
-import Login from "../Login/Login";
+import { useDispatch } from "react-redux";
+import { openLoginPopupFunc } from "../../redux/actions/actions";
 
 const MenuContainer = () => {
-  const [accountActive, setAccountActive] = useState(false);
+  const dispatch = useDispatch();
   const [filterActive, setFilterActive] = useState(false);
   const [themeActive, setThemeActive] = useState(false);
-  const [wishListActive, setWishListActive] = useState(false);
-  const [cartActive, setCartActive] = useState(false);
-
-  const [openPopUp, setOpenPopUp] = useState(false);
 
   // Icon Functions
   const AccountFunc = () => {
     if (localStorage.getItem("logined")) {
       console.log("go to /account");
     } else {
-      setOpenPopUp(true);
+      dispatch(openLoginPopupFunc(true));
     }
-    setAccountActive((prev) => !prev);
-  };
-
-  const accountHandleClose = () =>{
-    setOpenPopUp(false);
-    setAccountActive(false);
   };
 
   const FilterFunc = () => {
@@ -43,11 +33,11 @@ const MenuContainer = () => {
   };
 
   const WishListFunc = () => {
-    setWishListActive((prev) => !prev);
+    
   };
 
   const CartFunc = () => {
-    setCartActive((prev) => !prev);
+    
   };
 
   return (
@@ -57,7 +47,7 @@ const MenuContainer = () => {
       </Logo>
       <SubMenu>
         <div>
-          <IconButton active={accountActive} onClick={() => AccountFunc()}>
+          <IconButton onClick={() => AccountFunc()}>
             <AccountCircleRoundedIcon />
           </IconButton>
           <PopperItem
@@ -110,20 +100,14 @@ const MenuContainer = () => {
             popPosition={{ vertical: 'top', horizontal: "right" }}
             innerContent={"I am Angshuman"}
           />
-          <IconButton active={wishListActive} onClick={() => WishListFunc()}>
+          <IconButton onClick={() => WishListFunc()}>
             <FavoriteBorderIcon />
           </IconButton>
-          <IconButton active={cartActive} onClick={() => CartFunc()}>
+          <IconButton onClick={() => CartFunc()}>
             <LocalMallIcon />
           </IconButton>
         </div>
       </SubMenu>
-      <PopUpModal
-        open={openPopUp}
-        handleClose={accountHandleClose}
-        borderRadius={"0.2rem"}
-        element={<Login handleOnClickClose={accountHandleClose} />}
-      />
     </Container>
   );
 };

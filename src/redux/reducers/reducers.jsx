@@ -1,7 +1,8 @@
-import {NOTIFICATION} from "../actionTypes/actionTypes";
+import { NOTIFICATION, OPENLOGINPOPUP } from "../actionTypes/actionTypes";
 
 const initialState = {
   notification: {},
+  openLoginPopup: false
 };
 
 export const reducer = (state = initialState, action) => {
@@ -11,7 +12,11 @@ export const reducer = (state = initialState, action) => {
         ...state,
         notification: action.payload,
       };
-
+    case OPENLOGINPOPUP:
+      return {
+        ...state,
+        openLoginPopup: action.payload,
+      };
     default:
       return state;
   }

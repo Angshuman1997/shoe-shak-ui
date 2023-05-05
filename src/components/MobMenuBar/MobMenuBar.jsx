@@ -8,16 +8,27 @@ import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
+import { useDispatch } from "react-redux";
+import { openLoginPopupFunc } from "../../redux/actions/actions";
 
 export default function MobMenuBar() {
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleAccount = () => {
+    dispatch(openLoginPopupFunc(true));
+    setAnchorEl(null);
+  };
+
   return (
     <React.Fragment>
       <MobViewMenuBar onClick={handleClick}>
@@ -64,7 +75,7 @@ export default function MobMenuBar() {
             display: "flex",
             alignItems: "center",
           }}
-          onClick={handleClose}
+          onClick={handleAccount}
         >
           <Logo>
             <AccountCircleRoundedIcon />
