@@ -14,8 +14,11 @@ import CloseIcon from "@mui/icons-material/Close";
 import {Container, CloseSection, CloseBtn, Header, Content, UploadImage, RegCont,
   RegFieldInputs, ButtonSection, LoginBtn, LoginBtnTxt, AlertSection,
   LoginOptions, OptBtn, ReEnterEmail, OptBtnBack, OptBtnBackTxt} from "./LoginStyled";
+import { useDispatch } from "react-redux";
+import {notificationFunc} from "../../redux/actions/actions"
 
 export default function Login({ handleOnClickClose }) {
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [disBtn, setDisBtn] = useState(true);
   const [errTxtMsg, setErrTxtMsg] = useState("");
@@ -106,6 +109,7 @@ export default function Login({ handleOnClickClose }) {
   const handleClickSubmit = (e) => {
     e.preventDefault();
     if (loginType.type === "login") {
+      dispatch(notificationFunc({open: true, status: "success", message: "Success"}));
       setLoading(true);
     } else if (loginType.type === "forgot") {
       if (loginType.btnTxt === "Verify") {
