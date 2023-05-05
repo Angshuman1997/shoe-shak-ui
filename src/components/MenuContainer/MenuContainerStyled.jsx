@@ -23,6 +23,13 @@ export const Logo = styled.div`
 `;
 
 export const SubMenu = styled.div`
+    background: #feffff;
+    width: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 `;
 
 export const IconButton = styled.button`

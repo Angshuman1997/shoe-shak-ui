@@ -9,6 +9,8 @@ import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { useDispatch } from "react-redux";
 import { openLoginPopupFunc } from "../../redux/actions/actions";
 import ToolTip from "../ToolTip/ToolTip";
+import { Divider } from "@mui/material";
+import ThemeComp from "../ThemeComp/ThemeComp";
 
 const MenuContainer = () => {
   const dispatch = useDispatch();
@@ -22,13 +24,9 @@ const MenuContainer = () => {
     }
   };
 
-  const FilterFunc = () => {
-    
-  };
+  const FilterFunc = () => {};
 
-  const ThemeFunc = () => {
-    
-  };
+  const ThemeFunc = () => {};
 
   const WishListFunc = () => {};
 
@@ -41,29 +39,35 @@ const MenuContainer = () => {
       </Logo>
       <SubMenu>
         <ToolTip
+          label="Filters"
+          placement="right"
+          color="#000000"
+          bgColor="#ffffff"
+          element={
+            <IconButton onClick={() => FilterFunc()}>
+              <FilterAltOutlinedIcon />
+            </IconButton>
+          }
+        />
+        <ToolTip
+          top={"5rem !important"}
+          label={<ThemeComp />}
+          placement="right"
+          color="#000000"
+          bgColor="#ffffff"
+          element={
+            <IconButton onClick={() => ThemeFunc()}>
+              <SettingsSuggestIcon />
+            </IconButton>
+          }
+        />
+        <Divider variant="middle" flexItem sx={{ border: "1px solid" }} />
+        <ToolTip
           label="Account"
           placement="right"
           element={
             <IconButton onClick={() => AccountFunc()}>
               <AccountCircleRoundedIcon />
-            </IconButton>
-          }
-        />
-        <ToolTip
-          label="Filters"
-          placement="right"
-          element={
-            <IconButton onClick={() => FilterFunc()}>
-            <FilterAltOutlinedIcon />
-            </IconButton>
-          }
-        />
-        <ToolTip
-          label="Themes"
-          placement="right"
-          element={
-            <IconButton onClick={() => ThemeFunc()}>
-            <SettingsSuggestIcon />
             </IconButton>
           }
         />

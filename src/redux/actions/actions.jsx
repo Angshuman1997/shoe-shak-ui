@@ -1,17 +1,23 @@
-import {NOTIFICATION, OPENLOGINPOPUP} from "../actionTypes/actionTypes"
+import { NOTIFICATION, OPENLOGINPOPUP, THEMECOLOR } from "../actionTypes/actionTypes";
 
 const notificationFunc = (data) => {
   return {
     type: NOTIFICATION,
-    payload: data
+    payload: data,
   };
 };
 
 const openLoginPopupFunc = (data) => {
-    return {
-      type: OPENLOGINPOPUP,
-      payload: data
-    };
+  return {
+    type: OPENLOGINPOPUP,
+    payload: data,
   };
+};
 
-export { notificationFunc, openLoginPopupFunc };
+const themeColorFunc = (data) => {
+  return {
+    type: THEMECOLOR,
+    payload: data,
+  };
+};
+export { notificationFunc, openLoginPopupFunc, themeColorFunc };

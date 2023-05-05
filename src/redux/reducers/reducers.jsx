@@ -1,8 +1,13 @@
-import { NOTIFICATION, OPENLOGINPOPUP } from "../actionTypes/actionTypes";
+import {
+  NOTIFICATION,
+  OPENLOGINPOPUP,
+  THEMECOLOR,
+} from "../actionTypes/actionTypes";
 
 const initialState = {
   notification: {},
-  openLoginPopup: false
+  openLoginPopup: false,
+  themeColor: "#ffa500",
 };
 
 export const reducer = (state = initialState, action) => {
@@ -16,6 +21,11 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         openLoginPopup: action.payload,
+      };
+    case THEMECOLOR:
+      return {
+        ...state,
+        themeColor: action.payload,
       };
     default:
       return state;

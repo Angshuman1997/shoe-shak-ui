@@ -12,7 +12,7 @@ import Login from "./components/Login/Login";
 
 function App() {
   const dispatch = useDispatch();
-  const {notification, openLoginPopup} = useSelector((state) => state);
+  const {notification, openLoginPopup, themeColor} = useSelector((state) => state);
 
   const handleLoginClose = () =>{
     dispatch(openLoginPopupFunc(false));
@@ -27,7 +27,7 @@ function App() {
   },[dispatch, notification])
 
   return (
-    <div className="App">
+    <div className="App" style={{backgroundColor: themeColor}}>
       <MenuContainer />
       <Main>
         <TopContent />
