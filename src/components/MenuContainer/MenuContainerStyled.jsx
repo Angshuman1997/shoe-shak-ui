@@ -23,10 +23,6 @@ export const Logo = styled.div`
 `;
 
 export const SubMenu = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
 `;
 
 export const IconButton = styled.button`
