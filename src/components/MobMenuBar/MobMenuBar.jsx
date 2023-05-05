@@ -10,10 +10,13 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { useDispatch } from "react-redux";
 import { openLoginPopupFunc } from "../../redux/actions/actions";
+import MobViewPopUp from "./MobViewPopUp";
+import ThemeComp from "../ThemeComp/ThemeComp";
 
 export default function MobMenuBar() {
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [openPopup, setOpenPopup] = React.useState(false);
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -22,6 +25,10 @@ export default function MobMenuBar() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleCloseMobPopUp = () => {
+    setOpenPopup(false);
   };
 
   const handleAccount = () => {
@@ -103,7 +110,10 @@ export default function MobMenuBar() {
             display: "flex",
             alignItems: "center",
           }}
-          onClick={handleClose}
+          onClick={()=>{
+            setOpenPopup(true);
+            handleClose();
+          }}
         >
           <Logo>
             <SettingsSuggestIcon />
@@ -139,6 +149,7 @@ export default function MobMenuBar() {
           <Text>Cart</Text>
         </MenuItem>
       </Menu>
+      <MobViewPopUp element={<ThemeComp />} open={openPopup} handleClose={handleCloseMobPopUp}/>
     </React.Fragment>
   );
 }

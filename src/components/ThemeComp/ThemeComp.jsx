@@ -55,8 +55,8 @@ const ThemeComp = () => {
   return (
     <Box
       sx={{
-        width: 200,
-        height: 240,
+        width: 250,
+        height: 250,
       }}
     >
       <Container>
