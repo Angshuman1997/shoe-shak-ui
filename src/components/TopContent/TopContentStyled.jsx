@@ -15,14 +15,3 @@ export const MobViewLogo = styled.div`
     display: block;
   }
 `;
-
-export const MobViewMenuBar = styled.button`
-  display: none;
-  padding: 0;
-  border: none;
-  background: none;
-  @media screen and (max-width: 480px) {
-    display: block;
-    margin-left: 1rem;
-  }
-`;
