@@ -22,16 +22,20 @@ export default function MenuComp({ innerContent, btn }) {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
         sx={{
-          border: "2px solid #000000",
+          border: "0.14rem solid #ffffff",
           marginLeft: "1rem",
           color: "#000000",
           background: "#feffff",
           borderRadius: "0.5rem",
+          boxShadow: 'rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px',
+
           "@media screen and (max-width: 480px)": {
             display: "none",
           },
+          
           "&:hover":{
             color: "#ffffff",
+            border: "0.14rem solid #000000",
             background: "#000000",
             transition: "0.3s"
           }
