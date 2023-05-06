@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import styled from "styled-components";
-import { Divider } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { themeColorFunc } from "../../redux/actions/actions";
 
@@ -39,6 +38,13 @@ const ThemeComp = () => {
     },
   ]);
 
+  const scrollTo = () => {
+    const element = document.getElementById(themeColor);
+    if (element) {
+      element.scrollIntoView();
+    }
+  };
+
   const handleColorChange = (color) => {
     const tempObj = [...colorBtn];
     Object.keys(tempObj).forEach((i) => {
@@ -51,6 +57,11 @@ const ThemeComp = () => {
     setColorBtn(tempObj);
     dispatch(themeColorFunc(color));
   };
+
+  useEffect(() => {
+    scrollTo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [themeColor]);
 
   return (
     <Box
@@ -67,12 +78,10 @@ const ThemeComp = () => {
           <InnerHeader>
             <span>Color</span>
           </InnerHeader>
-          <Divider
-            sx={{ border: "0.1rem solid #b3acac", marginBottom: "0.5rem" }}
-          />
           <OptionButtons>
             {Object.keys(colorBtn).map((i, index) => (
               <ItemBtn
+                id={colorBtn[i].color}
                 onClick={() => handleColorChange(colorBtn[i].color)}
                 key={`${i}-${index}`}
                 color={colorBtn[i].color}
@@ -87,9 +96,6 @@ const ThemeComp = () => {
           <InnerHeader>
             <span>Layout</span>
           </InnerHeader>
-          <Divider
-            sx={{ border: "0.1rem solid #b3acac", marginBottom: "0.5rem" }}
-          />
           <OptionButtons>
             <ItemBtn>1</ItemBtn>
             <ItemBtn>2</ItemBtn>
