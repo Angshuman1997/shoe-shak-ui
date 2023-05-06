@@ -12,6 +12,9 @@ export const Header = styled.div`
     justify-content: center;
     align-items: center;
   }
+  @media screen and (max-width: 800px) {
+    font-size: 0.8rem;
+  }
 `;
 export const Content = styled.div`
   padding: 0 1rem 1rem 1rem;
@@ -147,6 +150,7 @@ export const AlertSection = styled.div`
     color: red;
     display: ${(props) => props.display};
     font-size: 0.7rem;
+    word-break: break-all;
   }
 `;
 

@@ -41,7 +41,7 @@ export default function MobViewPopUp({ element, open, handleClose }) {
 const Content = styled.div`
   width: 100%;
   height: 100%;
-  padding: 0.5rem;
+  padding: 0 0.5rem 0.5rem 0.5rem;
   margin-bottom: 1rem;
 `;
 const Top = styled.div`

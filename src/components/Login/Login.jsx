@@ -245,12 +245,12 @@ export default function Login({ handleOnClickClose }) {
     } else {
       setErrTxtMsg(
         errText.length === 1
-          ? `* Please add ${errText[0]}`
+          ? `* Please add ${errText[0]}, (scroll)`
           : errText.length === 2
-          ? `* Please add ${errText.join(" and ")}`
+          ? `* Please add ${errText.join(" and ")}, (scroll)`
           : `* Please add ${errText
               .slice(0, errText.length - 1)
-              .join(" ,")} and ${errText[errText.length - 1]}`
+              .join(" ,")} and ${errText[errText.length - 1]}, (scroll)`
       );
       setDisBtn(true);
     }
