@@ -1,8 +1,6 @@
-import React,{useState} from "react";
-import Product from "../Product/Product";
-import { MultiSizeContainer, SameSizeContainer } from "./MainContainerStyled";
-import { mockProductData } from "../../assets/mock/mockProductData";
+import React, { useState } from "react";
 import PopUpModal from "../PopUpModal/PopUpModal";
+import MasonryView from "../MasonryView/MasonryView";
 
 const MainContainer = ({ viewType = "multiSize" }) => {
   const [openProduct, setOpenProduct] = useState(false);
@@ -14,23 +12,9 @@ const MainContainer = ({ viewType = "multiSize" }) => {
 
   return (
     <React.Fragment>
-      {viewType === "multiSize" ? (
-        <MultiSizeContainer>
-          {Object.keys(mockProductData).map((i, index) => (
-            <Product
-              key={`${i}-${index}`}
-              size={mockProductData[i].multiSize}
-              image={mockProductData[i].image[0]}
-              handleClick={()=>{
-                setOpenProduct(true);
-                setProductInfo(mockProductData[i]);
-            }}
-            />
-          ))}
-        </MultiSizeContainer>
-      ) : (
-        <SameSizeContainer>Hi</SameSizeContainer>
-      )}
+      <div>
+        <MasonryView />
+      </div>
       <PopUpModal
         open={openProduct}
         handleClose={handleClose}
