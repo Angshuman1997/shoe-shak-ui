@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { openLoginPopupFunc } from "../../redux/actions/actions";
 import MobViewPopUp from "./MobViewPopUp";
 import ThemeComp from "../ThemeComp/ThemeComp";
+import { Divider } from "@mui/material";
 
 export default function MobMenuBar() {
   const dispatch = useDispatch();
@@ -82,20 +83,6 @@ export default function MobMenuBar() {
             display: "flex",
             alignItems: "center",
           }}
-          onClick={handleAccount}
-        >
-          <Logo>
-            <AccountCircleRoundedIcon />
-          </Logo>
-          <Text>Account</Text>
-        </MenuItem>
-        <MenuItem
-          sx={{
-            width: "100%",
-            gridColumnGap: "6%",
-            display: "flex",
-            alignItems: "center",
-          }}
           onClick={handleClose}
         >
           <Logo>
@@ -110,7 +97,7 @@ export default function MobMenuBar() {
             display: "flex",
             alignItems: "center",
           }}
-          onClick={()=>{
+          onClick={() => {
             setOpenPopup(true);
             handleClose();
           }}
@@ -119,6 +106,21 @@ export default function MobMenuBar() {
             <SettingsSuggestIcon />
           </Logo>
           <Text>Theme</Text>
+        </MenuItem>
+        <Divider variant="middle" flexItem sx={{ border: "0.1rem solid #686262" }} />
+        <MenuItem
+          sx={{
+            width: "100%",
+            gridColumnGap: "6%",
+            display: "flex",
+            alignItems: "center",
+          }}
+          onClick={handleAccount}
+        >
+          <Logo>
+            <AccountCircleRoundedIcon />
+          </Logo>
+          <Text>Account</Text>
         </MenuItem>
         <MenuItem
           sx={{
@@ -149,7 +151,11 @@ export default function MobMenuBar() {
           <Text>Cart</Text>
         </MenuItem>
       </Menu>
-      <MobViewPopUp element={<ThemeComp mobView={true}/>} open={openPopup} handleClose={handleCloseMobPopUp}/>
+      <MobViewPopUp
+        element={<ThemeComp mobView={true} />}
+        open={openPopup}
+        handleClose={handleCloseMobPopUp}
+      />
     </React.Fragment>
   );
 }

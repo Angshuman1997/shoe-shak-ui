@@ -6,38 +6,39 @@ import { themeColorFunc, themeLayoutFunc } from "../../redux/actions/actions";
 import ScrollContainer from "react-indiana-drag-scroll";
 import SpaceDashboardOutlinedIcon from "@mui/icons-material/SpaceDashboardOutlined";
 import WindowOutlinedIcon from "@mui/icons-material/WindowOutlined";
+import { COLORS } from "../../assets/systemConstants";
 
 const ThemeComp = ({ mobView = false }) => {
   const dispatch = useDispatch();
   const { themeColor, themeLayout } = useSelector((state) => state);
   const [colorBtn, setColorBtn] = useState([
     {
-      color: "#ffa500",
-      highlight: themeColor === "#ffa500",
+      color: COLORS[0],
+      highlight: themeColor === COLORS[0],
     },
     {
-      color: "#66ffff",
-      highlight: themeColor === "#66ffff",
+      color: COLORS[1],
+      highlight: themeColor === COLORS[1],
     },
     {
-      color: "#f519a0",
-      highlight: themeColor === "#f519a0",
+      color: COLORS[2],
+      highlight: themeColor === COLORS[2],
     },
     {
-      color: "#d0ff00",
-      highlight: themeColor === "#d0ff00",
+      color: COLORS[3],
+      highlight: themeColor === COLORS[3],
     },
     {
-      color: "#f0dc82",
-      highlight: themeColor === "#f0dc82",
+      color: COLORS[4],
+      highlight: themeColor === COLORS[4],
     },
     {
-      color: "#c1cdcd",
-      highlight: themeColor === "#c1cdcd",
+      color: COLORS[5],
+      highlight: themeColor === COLORS[5],
     },
     {
-      color: "#707372",
-      highlight: themeColor === "#707372",
+      color: COLORS[6],
+      highlight: themeColor === COLORS[6],
     },
   ]);
 
@@ -48,8 +49,8 @@ const ThemeComp = ({ mobView = false }) => {
     }
   };
 
-  const handleChangeLayout = (view) =>{
-    dispatch(themeLayoutFunc(view))
+  const handleChangeLayout = (view) => {
+    dispatch(themeLayoutFunc(view));
   };
 
   const handleColorChange = (color) => {
@@ -107,10 +108,18 @@ const ThemeComp = ({ mobView = false }) => {
           </InnerHeader>
           <ScrollContainer className="scroll-container" hideScrollbars={false}>
             <OptionButtons>
-              <ItemBtnLayout id="multisize" onClick={()=>handleChangeLayout("multisize")} highlight={themeLayout === "multisize"}>
+              <ItemBtnLayout
+                id="multisize"
+                onClick={() => handleChangeLayout("multisize")}
+                highlight={themeLayout === "multisize"}
+              >
                 <SpaceDashboardOutlinedIcon />
               </ItemBtnLayout>
-              <ItemBtnLayout id="equalsize" onClick={()=>handleChangeLayout("equalsize")} highlight={themeLayout === "equalsize"}>
+              <ItemBtnLayout
+                id="equalsize"
+                onClick={() => handleChangeLayout("equalsize")}
+                highlight={themeLayout === "equalsize"}
+              >
                 <WindowOutlinedIcon />
               </ItemBtnLayout>
             </OptionButtons>
@@ -129,7 +138,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 3%;
-  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0) !important; 
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
   .indiana-scroll-container {
     cursor: pointer;
     ::-webkit-scrollbar-track {
@@ -200,7 +209,8 @@ const ItemBtnLayout = styled.button`
   padding: 0;
   cursor: pointer;
   transition: border 0.1s;
-  border: ${(props) => (props.highlight ? "0.2rem solid #005aff" : "0.2rem solid #ffffff")};
+  border: ${(props) =>
+    props.highlight ? "0.2rem solid #005aff" : "0.2rem solid #ffffff"};
   display: flex;
   align-items: center;
   justify-content: center;
