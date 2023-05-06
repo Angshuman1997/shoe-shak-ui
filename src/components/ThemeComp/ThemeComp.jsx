@@ -3,8 +3,9 @@ import Box from "@mui/material/Box";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { themeColorFunc } from "../../redux/actions/actions";
+import ScrollContainer from "react-indiana-drag-scroll";
 
-const ThemeComp = ({mobView = false}) => {
+const ThemeComp = ({ mobView = false }) => {
   const dispatch = useDispatch();
   const { themeColor } = useSelector((state) => state);
   const [colorBtn, setColorBtn] = useState([
@@ -78,24 +79,27 @@ const ThemeComp = ({mobView = false}) => {
           <InnerHeader>
             <span>Color</span>
           </InnerHeader>
-          <OptionButtons>
-            {Object.keys(colorBtn).map((i, index) => (
-              <ItemBtn
-                id={colorBtn[i].color}
-                onClick={() => handleColorChange(colorBtn[i].color)}
-                key={`${i}-${index}`}
-                color={colorBtn[i].color}
-                highlight={colorBtn[i].highlight}
-              >
-                <span className="dot"></span>
-              </ItemBtn>
-            ))}
-          </OptionButtons>
+          <ScrollContainer className="scroll-container" hideScrollbars={false}>
+            <OptionButtons>
+              {Object.keys(colorBtn).map((i, index) => (
+                <ItemBtn
+                  id={colorBtn[i].color}
+                  onClick={() => handleColorChange(colorBtn[i].color)}
+                  key={`${i}-${index}`}
+                  color={colorBtn[i].color}
+                  highlight={colorBtn[i].highlight}
+                >
+                  <span className="dot"></span>
+                </ItemBtn>
+              ))}
+            </OptionButtons>
+          </ScrollContainer>
         </InnerContainer>
         <InnerContainer>
           <InnerHeader>
             <span>Layout</span>
           </InnerHeader>
+          <ScrollContainer className="scroll-container" hideScrollbars={false}>
           <OptionButtons>
             <ItemBtn>1</ItemBtn>
             <ItemBtn>2</ItemBtn>
@@ -112,6 +116,7 @@ const ThemeComp = ({mobView = false}) => {
             <ItemBtn>4</ItemBtn>
             <ItemBtn>5</ItemBtn>
           </OptionButtons>
+          </ScrollContainer>
         </InnerContainer>
       </Container>
     </Box>
@@ -126,6 +131,20 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 3%;
+  .indiana-scroll-container {
+    cursor: pointer;
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar {
+      height: 4px;
+      width: 4px;
+      border: 1px solid transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #b3acac;
+    }
+  }
 `;
 
 const Header = styled.div`
@@ -153,21 +172,7 @@ const InnerHeader = styled.div`
 const OptionButtons = styled.div`
   display: flex;
   column-gap: 10%;
-  overflow-y: hidden;
-  overflow-x: scroll;
   cursor: pointer;
-  scroll-behavior: smooth;
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-  ::-webkit-scrollbar {
-    height: 4px;
-    width: 4px;
-    border: 1px solid transparent;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #b3acac;
-  }
 `;
 
 const ItemBtn = styled.button`
