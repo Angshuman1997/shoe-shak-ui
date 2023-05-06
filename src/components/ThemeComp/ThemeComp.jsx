@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { themeColorFunc } from "../../redux/actions/actions";
+import { themeColorFunc, themeLayoutFunc } from "../../redux/actions/actions";
 import ScrollContainer from "react-indiana-drag-scroll";
+import SpaceDashboardOutlinedIcon from "@mui/icons-material/SpaceDashboardOutlined";
+import WindowOutlinedIcon from "@mui/icons-material/WindowOutlined";
 
 const ThemeComp = ({ mobView = false }) => {
   const dispatch = useDispatch();
-  const { themeColor } = useSelector((state) => state);
+  const { themeColor, themeLayout } = useSelector((state) => state);
   const [colorBtn, setColorBtn] = useState([
     {
       color: "#ffa500",
@@ -46,6 +48,10 @@ const ThemeComp = ({ mobView = false }) => {
     }
   };
 
+  const handleChangeLayout = (view) =>{
+    dispatch(themeLayoutFunc(view))
+  };
+
   const handleColorChange = (color) => {
     const tempObj = [...colorBtn];
     Object.keys(tempObj).forEach((i) => {
@@ -82,7 +88,7 @@ const ThemeComp = ({ mobView = false }) => {
           <ScrollContainer className="scroll-container" hideScrollbars={false}>
             <OptionButtons>
               {Object.keys(colorBtn).map((i, index) => (
-                <ItemBtn
+                <ItemBtnColor
                   id={colorBtn[i].color}
                   onClick={() => handleColorChange(colorBtn[i].color)}
                   key={`${i}-${index}`}
@@ -90,7 +96,7 @@ const ThemeComp = ({ mobView = false }) => {
                   highlight={colorBtn[i].highlight}
                 >
                   <span className="dot"></span>
-                </ItemBtn>
+                </ItemBtnColor>
               ))}
             </OptionButtons>
           </ScrollContainer>
@@ -100,22 +106,14 @@ const ThemeComp = ({ mobView = false }) => {
             <span>Layout</span>
           </InnerHeader>
           <ScrollContainer className="scroll-container" hideScrollbars={false}>
-          <OptionButtons>
-            <ItemBtn>1</ItemBtn>
-            <ItemBtn>2</ItemBtn>
-            <ItemBtn>3</ItemBtn>
-            <ItemBtn>4</ItemBtn>
-            <ItemBtn>5</ItemBtn>
-            <ItemBtn>4</ItemBtn>
-            <ItemBtn>5</ItemBtn>
-            <ItemBtn>1</ItemBtn>
-            <ItemBtn>2</ItemBtn>
-            <ItemBtn>3</ItemBtn>
-            <ItemBtn>4</ItemBtn>
-            <ItemBtn>5</ItemBtn>
-            <ItemBtn>4</ItemBtn>
-            <ItemBtn>5</ItemBtn>
-          </OptionButtons>
+            <OptionButtons>
+              <ItemBtnLayout id="multisize" onClick={()=>handleChangeLayout("multisize")} highlight={themeLayout === "multisize"}>
+                <SpaceDashboardOutlinedIcon />
+              </ItemBtnLayout>
+              <ItemBtnLayout id="equalsize" onClick={()=>handleChangeLayout("equalsize")} highlight={themeLayout === "equalsize"}>
+                <WindowOutlinedIcon />
+              </ItemBtnLayout>
+            </OptionButtons>
           </ScrollContainer>
         </InnerContainer>
       </Container>
@@ -175,7 +173,7 @@ const OptionButtons = styled.div`
   cursor: pointer;
 `;
 
-const ItemBtn = styled.button`
+const ItemBtnColor = styled.button`
   margin-bottom: 1rem;
   -webkit-tap-highlight-color: transparent;
   border: none;
@@ -192,4 +190,17 @@ const ItemBtn = styled.button`
     display: inline-block;
     transition: border 0.1s;
   }
+`;
+
+const ItemBtnLayout = styled.button`
+  margin-bottom: 1rem;
+  -webkit-tap-highlight-color: transparent;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  transition: border 0.1s;
+  border: ${(props) => (props.highlight ? "0.2rem solid #005aff" : "0.2rem solid #ffffff")};
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

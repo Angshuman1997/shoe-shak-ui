@@ -2,12 +2,14 @@ import {
   NOTIFICATION,
   OPENLOGINPOPUP,
   THEMECOLOR,
+  THEMELAYOUT,
 } from "../actionTypes/actionTypes";
 
 const initialState = {
   notification: {},
   openLoginPopup: false,
   themeColor: "#ffa500",
+  themeLayout: "multisize",
 };
 
 export const reducer = (state = initialState, action) => {
@@ -26,6 +28,11 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         themeColor: action.payload,
+      };
+    case THEMELAYOUT:
+      return {
+        ...state,
+        themeLayout: action.payload,
       };
     default:
       return state;

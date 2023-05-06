@@ -1,25 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import PopUpModal from "../PopUpModal/PopUpModal";
 import MasonryView from "../MasonryView/MasonryView";
 import AdBanner from "../AdBanner/AdBanner";
+import EqualSizeView from "../EqualSizeView/EqualSizeView";
+import { useSelector } from "react-redux";
 
 const MainContainer = ({ viewType = "multiSize" }) => {
-  const [openProduct, setOpenProduct] = useState(false);
-  const [productInfo, setProductInfo] = useState({});
+  const { themeLayout } = useSelector((state) => state);
 
   const handleClose = () => {
-    setOpenProduct(false);
   };
 
   return (
     <React.Fragment>
-    <AdBanner />
-      <MasonryView />
+      <AdBanner />
+      {themeLayout === "multisize" ? <MasonryView /> : <EqualSizeView />}
       <PopUpModal
-        open={openProduct}
+        open={false}
         handleClose={handleClose}
         borderRadius={"1rem"}
-        element={<React.Fragment>{productInfo.name}</React.Fragment>}
+        element={<React.Fragment>Hi</React.Fragment>}
       />
     </React.Fragment>
   );

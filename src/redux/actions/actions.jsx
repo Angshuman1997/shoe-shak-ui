@@ -1,4 +1,4 @@
-import { NOTIFICATION, OPENLOGINPOPUP, THEMECOLOR } from "../actionTypes/actionTypes";
+import { NOTIFICATION, OPENLOGINPOPUP, THEMECOLOR, THEMELAYOUT } from "../actionTypes/actionTypes";
 
 const notificationFunc = (data) => {
   return {
@@ -20,4 +20,12 @@ const themeColorFunc = (data) => {
     payload: data,
   };
 };
-export { notificationFunc, openLoginPopupFunc, themeColorFunc };
+
+const themeLayoutFunc = (data) => {
+  return {
+    type: THEMELAYOUT,
+    payload: data,
+  };
+};
+
+export { notificationFunc, openLoginPopupFunc, themeColorFunc, themeLayoutFunc };
