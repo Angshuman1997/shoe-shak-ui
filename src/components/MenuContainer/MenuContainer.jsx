@@ -11,11 +11,13 @@ import { openLoginPopupFunc } from "../../redux/actions/actions";
 import ToolTip from "../ToolTip/ToolTip";
 import { Divider } from "@mui/material";
 import ThemeComp from "../ThemeComp/ThemeComp";
+import FilterComp from "../FilterComp/FilterComp";
 import MobViewPopUp from "../MobMenuBar/MobViewPopUp";
 
 const MenuContainer = () => {
   const dispatch = useDispatch();
-  const [openOnTouch, setOpenOnTouch] = useState(false);
+  const [openOnTouchTheme, setOpenOnTouchTheme] = useState(false);
+  const [openOnTouchFilter, setOpenOnTouchFilter] = useState(false);
 
   // Icon Functions
   const AccountFunc = () => {
@@ -26,14 +28,16 @@ const MenuContainer = () => {
     }
   };
 
-  const FilterFunc = () => {};
-
   const WishListFunc = () => {};
 
   const CartFunc = () => {};
 
-  const handleOnTouch = () => {
-    setOpenOnTouch(false);
+  const handleOnTouchTheme = () => {
+    setOpenOnTouchTheme(false);
+  };
+
+  const handleOnTouchFilter = () => {
+    setOpenOnTouchFilter(false);
   };
 
   return (
@@ -43,24 +47,25 @@ const MenuContainer = () => {
       </Logo>
       <SubMenu>
         <ToolTip
-          label="Filters"
+          top={"6rem !important"}
+          label={<FilterComp />}
           placement="right"
           color="#000000"
           bgColor="#ffffff"
           element={
-            <IconButton onClick={() => FilterFunc()}>
+            <IconButton onTouchEnd={() => setOpenOnTouchFilter(true)}>
               <FilterAltOutlinedIcon />
             </IconButton>
           }
         />
         <ToolTip
-          top={"5rem !important"}
+          top={"6rem !important"}
           label={<ThemeComp />}
           placement="right"
           color="#000000"
           bgColor="#ffffff"
           element={
-            <IconButton onTouchEnd={()=>setOpenOnTouch(true)}>
+            <IconButton onTouchEnd={() => setOpenOnTouchTheme(true)}>
               <SettingsSuggestIcon />
             </IconButton>
           }
@@ -94,7 +99,20 @@ const MenuContainer = () => {
           }
         />
       </SubMenu>
-      {openOnTouch && <MobViewPopUp element={<ThemeComp mobView={true}/>} open={openOnTouch} handleClose={handleOnTouch}/>}
+      {openOnTouchTheme && (
+        <MobViewPopUp
+          element={<ThemeComp mobView={true} />}
+          open={openOnTouchTheme}
+          handleClose={handleOnTouchTheme}
+        />
+      )}
+      {openOnTouchFilter && (
+        <MobViewPopUp
+          element={<FilterComp mobView={true} />}
+          open={openOnTouchFilter}
+          handleClose={handleOnTouchFilter}
+        />
+      )}
     </Container>
   );
 };

@@ -12,12 +12,14 @@ import { useDispatch } from "react-redux";
 import { openLoginPopupFunc } from "../../redux/actions/actions";
 import MobViewPopUp from "./MobViewPopUp";
 import ThemeComp from "../ThemeComp/ThemeComp";
+import FilterComp from "../FilterComp/FilterComp";
 import { Divider } from "@mui/material";
 
 export default function MobMenuBar() {
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [openPopup, setOpenPopup] = React.useState(false);
+  const [openPopupTheme, setOpenPopupTheme] = React.useState(false);
+  const [openPopupFilter, setOpenPopupFilter] = React.useState(false);
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -28,8 +30,12 @@ export default function MobMenuBar() {
     setAnchorEl(null);
   };
 
-  const handleCloseMobPopUp = () => {
-    setOpenPopup(false);
+  const handleCloseMobPopUpTheme = () => {
+    setOpenPopupTheme(false);
+  };
+
+  const handleCloseMobPopUpFilter = () => {
+    setOpenPopupFilter(false);
   };
 
   const handleAccount = () => {
@@ -83,7 +89,10 @@ export default function MobMenuBar() {
             display: "flex",
             alignItems: "center",
           }}
-          onClick={handleClose}
+          onClick={() => {
+            setOpenPopupFilter(true);
+            handleClose();
+          }}
         >
           <Logo>
             <FilterAltOutlinedIcon />
@@ -98,7 +107,7 @@ export default function MobMenuBar() {
             alignItems: "center",
           }}
           onClick={() => {
-            setOpenPopup(true);
+            setOpenPopupTheme(true);
             handleClose();
           }}
         >
@@ -153,8 +162,13 @@ export default function MobMenuBar() {
       </Menu>
       <MobViewPopUp
         element={<ThemeComp mobView={true} />}
-        open={openPopup}
-        handleClose={handleCloseMobPopUp}
+        open={openPopupTheme}
+        handleClose={handleCloseMobPopUpTheme}
+      />
+      <MobViewPopUp
+        element={<FilterComp mobView={true} />}
+        open={openPopupFilter}
+        handleClose={handleCloseMobPopUpFilter}
       />
     </React.Fragment>
   );
