@@ -46,6 +46,9 @@ function AdBanner() {
             onClick={() => {
               setIndex(idx);
             }}
+            onTouchEnd={() => {
+              setIndex(idx);
+            }}
           >
             <SlideDot active={index === idx} />
           </SlideDotBtn>
@@ -70,8 +73,28 @@ const SliderContent = styled.div`
 `;
 
 const SlideItem = styled.div`
+  height: 20rem;
+  @media screen and (max-width: 800px) {
+    font-size: 0.8rem;
+  }
+
+  @media screen and (min-width: 1280px) {
+    height: 30rem;
+  }
+
+  @media screen and (min-width: 1500px) {
+    height: 40rem;
+  }
+
+  @media screen and (max-width: 800px) {
+    height: 15rem;
+  }
+
+  @media screen and (max-width: 480px) {
+    height: 10rem;
+  }
+
   display: inline-block;
-  height: 25rem;
   width: 100%;
   border-radius: 0.3rem;
   background: ${(props) =>
@@ -91,9 +114,13 @@ const SlideDotBtn = styled.button`
 
 const SlideDot = styled.div`
   display: inline-block;
-  height: 20px;
-  width: 20px;
+  height: 1.25rem;
+  width: 1.25rem;
   border-radius: 50%;
   margin: 15px 7px 0px;
   background-color: ${(props) => (props.active ? "#6a0dad" : "#c4c4c4")};
+  @media screen and (max-width: 800px) {
+    height: 0.5rem;
+    width: 0.5rem;
+  }
 `;
