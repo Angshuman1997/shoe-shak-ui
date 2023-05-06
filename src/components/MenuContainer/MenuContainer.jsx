@@ -3,20 +3,17 @@ import { GiRunningShoe } from "react-icons/gi";
 import { Container, Logo, SubMenu, IconButton } from "./MenuContainerStyled";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
-import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { useDispatch } from "react-redux";
 import { openLoginPopupFunc } from "../../redux/actions/actions";
 import ToolTip from "../ToolTip/ToolTip";
 import { Divider } from "@mui/material";
-import ThemeComp from "../ThemeComp/ThemeComp";
 import FilterComp from "../FilterComp/FilterComp";
 import MobViewPopUp from "../MobMenuBar/MobViewPopUp";
 
 const MenuContainer = () => {
   const dispatch = useDispatch();
-  const [openOnTouchTheme, setOpenOnTouchTheme] = useState(false);
   const [openOnTouchFilter, setOpenOnTouchFilter] = useState(false);
 
   // Icon Functions
@@ -31,10 +28,6 @@ const MenuContainer = () => {
   const WishListFunc = () => {};
 
   const CartFunc = () => {};
-
-  const handleOnTouchTheme = () => {
-    setOpenOnTouchTheme(false);
-  };
 
   const handleOnTouchFilter = () => {
     setOpenOnTouchFilter(false);
@@ -55,18 +48,6 @@ const MenuContainer = () => {
           element={
             <IconButton onTouchEnd={() => setOpenOnTouchFilter(true)}>
               <FilterAltOutlinedIcon />
-            </IconButton>
-          }
-        />
-        <ToolTip
-          top={"6rem !important"}
-          label={<ThemeComp />}
-          placement="right"
-          color="#000000"
-          bgColor="#ffffff"
-          element={
-            <IconButton onTouchEnd={() => setOpenOnTouchTheme(true)}>
-              <SettingsSuggestIcon />
             </IconButton>
           }
         />
@@ -99,13 +80,6 @@ const MenuContainer = () => {
           }
         />
       </SubMenu>
-      {openOnTouchTheme && (
-        <MobViewPopUp
-          element={<ThemeComp mobView={true} />}
-          open={openOnTouchTheme}
-          handleClose={handleOnTouchTheme}
-        />
-      )}
       {openOnTouchFilter && (
         <MobViewPopUp
           element={<FilterComp mobView={true} />}

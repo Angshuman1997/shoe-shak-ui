@@ -1,5 +1,5 @@
 import React from "react";
-import DoubleArrowRoundedIcon from "@mui/icons-material/DoubleArrowRounded";
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { SearchBox, SearchBtn } from "./SearchBarStyled";
 
 const SearchBar = () => {
@@ -7,7 +7,7 @@ const SearchBar = () => {
     <SearchBox>
       <input type="text" placeholder="Search..." />
       <SearchBtn>
-          <DoubleArrowRoundedIcon />
+          <SearchOutlinedIcon />
       </SearchBtn>
     </SearchBox>
   );

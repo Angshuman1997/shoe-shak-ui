@@ -150,7 +150,7 @@ const Container = styled.div`
       border: 1px solid transparent;
     }
     ::-webkit-scrollbar-thumb {
-      background: #b3acac;
+      background: "#585050";
     }
   }
 `;
