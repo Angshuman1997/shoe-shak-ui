@@ -14,6 +14,7 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 1,
+  outline: 'none'
 };
 
 export default function MobViewPopUp({ element, open, handleClose }) {
