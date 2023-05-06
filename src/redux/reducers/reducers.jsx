@@ -8,7 +8,7 @@ import {
 const initialState = {
   notification: {},
   openLoginPopup: false,
-  themeColor: "#ffa500",
+  themeColor: "#CAF4F4",
   themeLayout: "multisize",
 };
 
