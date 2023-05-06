@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PopUpModal from "../PopUpModal/PopUpModal";
 import MasonryView from "../MasonryView/MasonryView";
+import AdBanner from "../AdBanner/AdBanner";
 
 const MainContainer = ({ viewType = "multiSize" }) => {
   const [openProduct, setOpenProduct] = useState(false);
@@ -12,9 +13,8 @@ const MainContainer = ({ viewType = "multiSize" }) => {
 
   return (
     <React.Fragment>
-      <div>
-        <MasonryView />
-      </div>
+    <AdBanner />
+      <MasonryView />
       <PopUpModal
         open={openProduct}
         handleClose={handleClose}

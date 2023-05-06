@@ -35,7 +35,7 @@ export default function MasonryView() {
   }, []);
 
   return (
-    <Box sx={{ pt: 4, width: "100%" }}>
+    <Box sx={{ width: "100%", paddingTop: "1rem"}}>
       <Masonry columns={{ xs: 2, md: 4, xl: 6 }} spacing={2} sx={{ margin: "0px"}}>
         {itemData.map((item, index) => (
           <div key={index}>

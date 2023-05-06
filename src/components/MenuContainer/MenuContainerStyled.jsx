@@ -20,7 +20,7 @@ export const Logo = styled.div`
   min-width: 40px;
   justify-content: center;
   margin-top: 0.2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 `;
 
 export const SubMenu = styled.div`

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { GiConverseShoe } from "react-icons/gi";
+import { GiRunningShoe } from "react-icons/gi";
 import { Container, Logo, SubMenu, IconButton } from "./MenuContainerStyled";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
@@ -39,7 +39,7 @@ const MenuContainer = () => {
   return (
     <Container>
       <Logo>
-        <GiConverseShoe size={70} />
+        <GiRunningShoe size={70} />
       </Logo>
       <SubMenu>
         <ToolTip

@@ -1,5 +1,5 @@
 import React from "react";
-import { GiConverseShoe } from "react-icons/gi";
+import { GiRunningShoe } from "react-icons/gi";
 import SearchBar from "../SearchBar/SearchBar";
 import { Container, MobViewLogo } from "./TopContentStyled";
 import MobMenuBar from "../MobMenuBar/MobMenuBar";
@@ -9,7 +9,7 @@ const TopContent = () => {
   return (
     <Container>
       <MobViewLogo>
-        <GiConverseShoe size={50} />
+        <GiRunningShoe size={50} />
       </MobViewLogo>
       <SearchBar />
       <MobMenuBar />
