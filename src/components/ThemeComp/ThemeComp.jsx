@@ -129,6 +129,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 3%;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0) !important; 
   .indiana-scroll-container {
     cursor: pointer;
     ::-webkit-scrollbar-track {

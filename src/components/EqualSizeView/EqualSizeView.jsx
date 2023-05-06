@@ -26,7 +26,7 @@ export default function EqualSizeView() {
         {Array.from(itemData).map((item, index) => (
           <Grid xs={2} sm={4} md={4} key={index}>
             <Item>
-              <ProductImg src={`${item.img}`} alt={item.title} loading="lazy" />
+              <ProductImg src={`${item.img}`} alt={item.title} />
             </Item>
           </Grid>
         ))}

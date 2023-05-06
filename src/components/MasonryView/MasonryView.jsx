@@ -44,7 +44,6 @@ export default function MasonryView() {
               src={`${item.img}?w=162&auto=format`}
               srcSet={`${item.img}?w=162&auto=format&dpr=2 2x`}
               alt={item.title}
-              loading="lazy"
               style={{
                 borderBottomLeftRadius: 4,
                 borderBottomRightRadius: 4,

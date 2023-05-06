@@ -5,7 +5,7 @@ import AdBanner from "../AdBanner/AdBanner";
 import EqualSizeView from "../EqualSizeView/EqualSizeView";
 import { useSelector } from "react-redux";
 
-const MainContainer = ({ viewType = "multiSize" }) => {
+const MainContainer = () => {
   const { themeLayout } = useSelector((state) => state);
 
   const handleClose = () => {
