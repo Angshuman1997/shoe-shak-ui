@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { themeColorFunc } from "../../redux/actions/actions";
 
-const ThemeComp = () => {
+const ThemeComp = ({mobView = false}) => {
   const dispatch = useDispatch();
   const { themeColor } = useSelector((state) => state);
   const [colorBtn, setColorBtn] = useState([
@@ -66,8 +66,8 @@ const ThemeComp = () => {
   return (
     <Box
       sx={{
-        width: 250,
-        height: 250,
+        width: mobView ? "100%" : 250,
+        height: mobView ? "100%" : 250,
       }}
     >
       <Container>

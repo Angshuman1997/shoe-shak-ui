@@ -20,7 +20,6 @@ export default function MobViewPopUp({ element, open, handleClose }) {
   return (
     <Modal
       open={open}
-      onClose={handleClose}
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
@@ -42,6 +41,7 @@ const Content = styled.div`
   width: 100%;
   height: 100%;
   padding: 0.5rem;
+  margin-bottom: 1rem;
 `;
 const Top = styled.div`
   display: flex;
@@ -53,5 +53,5 @@ const Top = styled.div`
   }
 `;
 const Bottom = styled.div`
-width: 100%;
+  width: 100%;
 `;

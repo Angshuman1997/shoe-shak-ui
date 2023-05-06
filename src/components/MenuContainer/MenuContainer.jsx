@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { GiConverseShoe } from "react-icons/gi";
 import { Container, Logo, SubMenu, IconButton } from "./MenuContainerStyled";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
@@ -11,9 +11,11 @@ import { openLoginPopupFunc } from "../../redux/actions/actions";
 import ToolTip from "../ToolTip/ToolTip";
 import { Divider } from "@mui/material";
 import ThemeComp from "../ThemeComp/ThemeComp";
+import MobViewPopUp from "../MobMenuBar/MobViewPopUp";
 
 const MenuContainer = () => {
   const dispatch = useDispatch();
+  const [openOnTouch, setOpenOnTouch] = useState(false);
 
   // Icon Functions
   const AccountFunc = () => {
@@ -26,11 +28,13 @@ const MenuContainer = () => {
 
   const FilterFunc = () => {};
 
-  const ThemeFunc = () => {};
-
   const WishListFunc = () => {};
 
   const CartFunc = () => {};
+
+  const handleOnTouch = () => {
+    setOpenOnTouch(false);
+  };
 
   return (
     <Container>
@@ -56,7 +60,7 @@ const MenuContainer = () => {
           color="#000000"
           bgColor="#ffffff"
           element={
-            <IconButton onClick={() => ThemeFunc()}>
+            <IconButton onTouchEnd={()=>setOpenOnTouch(true)}>
               <SettingsSuggestIcon />
             </IconButton>
           }
@@ -90,6 +94,7 @@ const MenuContainer = () => {
           }
         />
       </SubMenu>
+      {openOnTouch && <MobViewPopUp element={<ThemeComp mobView={true}/>} open={openOnTouch} handleClose={handleOnTouch}/>}
     </Container>
   );
 };

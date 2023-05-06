@@ -8,9 +8,9 @@ export const Container = styled.div`
   align-items: center;
   position: fixed;
   top: 0;
-  padding: 30px 15px;
+  padding: 1.5rem 0 0 0;
   @media screen and (max-width: 480px) {
-      display: none;
+    display: none;
   }
 `;
 
@@ -20,16 +20,17 @@ export const Logo = styled.div`
   min-width: 40px;
   justify-content: center;
   margin-top: 0.2rem;
+  margin-bottom: 2rem;
 `;
 
 export const SubMenu = styled.div`
-    background: #feffff;
-    width: 4rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  background: #feffff;
+  width: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 `;
 
 export const IconButton = styled.button`
@@ -44,8 +45,8 @@ export const IconButton = styled.button`
   cursor: pointer;
   margin: 15px 0;
   transition: 0.3s;
-  background: ${props => props.active ? "#000000" : "#ffffff"};
-  color: ${props => props.active ? "#ffffff" : "#000000"};
+  background: ${(props) => (props.active ? "#000000" : "#ffffff")};
+  color: ${(props) => (props.active ? "#ffffff" : "#000000")};
   &:hover {
     background: #000000;
     color: #ffffff;

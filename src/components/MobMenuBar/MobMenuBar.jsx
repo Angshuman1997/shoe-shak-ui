@@ -149,7 +149,7 @@ export default function MobMenuBar() {
           <Text>Cart</Text>
         </MenuItem>
       </Menu>
-      <MobViewPopUp element={<ThemeComp />} open={openPopup} handleClose={handleCloseMobPopUp}/>
+      <MobViewPopUp element={<ThemeComp mobView={true}/>} open={openPopup} handleClose={handleCloseMobPopUp}/>
     </React.Fragment>
   );
 }
