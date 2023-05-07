@@ -12,7 +12,7 @@ const StaticAccount = () => {
           <PageHeader>ACCOUNT</PageHeader>
         </PartOne>
         <PartTwo>
-          <MenuComp
+          <MenuComp shape={"noShape"}
             innerContent={<ThemeComp mobView={true} />}
             btn={<SettingsSuggestIcon />}
           />
