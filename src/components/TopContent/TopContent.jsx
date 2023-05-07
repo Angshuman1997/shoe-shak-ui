@@ -12,11 +12,12 @@ const TopContent = () => {
   return (
     <Container>
       <MobViewLogo>
-        <GiRunningShoe size={50} />
+        <GiRunningShoe size={45} />
       </MobViewLogo>
       <TopCombo>
         <SearchBar />
         <MenuComp
+          shape="noShape"
           innerContent={<ThemeComp mobView={true} />}
           btn={<SettingsSuggestIcon />}
         />
@@ -32,4 +33,9 @@ const TopCombo = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background: #ffffff;
+  border: 2px solid #ffffff;
+  border-radius: 1rem;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+    rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
 `;

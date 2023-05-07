@@ -102,4 +102,7 @@ const NoShapeButton = styled.button`
   border: none;
   margin: 0.2rem 0.5rem 0 0.2rem;
   cursor: pointer;
+  @media screen and (max-width: 480px) {
+    display: none;
+  }
 `;

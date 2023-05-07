@@ -29,7 +29,7 @@ const MenuContainer = () => {
   return (
     <Container>
       <Logo>
-        <GiRunningShoe size={70} />
+        <GiRunningShoe size={65} />
       </Logo>
       <SubMenu>
         <ToolTip
@@ -37,7 +37,7 @@ const MenuContainer = () => {
           label="Account"
           placement="right"
           element={
-            <IconButton onClick={() => AccountFunc()}>
+            <IconButton onClick={() => AccountFunc()} onTouchEnd={() => AccountFunc()}>
               <AccountCircleRoundedIcon />
             </IconButton>
           }
@@ -47,7 +47,7 @@ const MenuContainer = () => {
           label="Wishlist"
           placement="right"
           element={
-            <IconButton onClick={() => WishListFunc()}>
+            <IconButton onClick={() => WishListFunc()} onTouchEnd={() => WishListFunc()}>
               <FavoriteBorderIcon />
             </IconButton>
           }
@@ -57,7 +57,7 @@ const MenuContainer = () => {
           label="Cart"
           placement="right"
           element={
-            <IconButton onClick={() => CartFunc()}>
+            <IconButton onClick={() => CartFunc()} onTouchEnd={() => CartFunc()}>
               <LocalMallIcon />
             </IconButton>
           }

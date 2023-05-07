@@ -11,6 +11,7 @@ export const Container = styled.div`
 export const MobViewLogo = styled.div`
   display: none;
   margin: 0.5rem 1rem 0 0;
+  rotate: 345deg;
   @media screen and (max-width: 480px) {
     display: block;
   }

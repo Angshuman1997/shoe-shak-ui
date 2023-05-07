@@ -149,6 +149,7 @@ const MobViewMenuBar = styled.button`
   border: none;
   background: none;
   cursor: pointer;
+  margin-top: 0.2rem;
   @media screen and (max-width: 480px) {
     display: block;
     margin-left: 1rem;

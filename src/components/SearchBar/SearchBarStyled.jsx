@@ -5,11 +5,9 @@ export const SearchBox = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  background: #feffff;
-  padding: 4px 15px;
-  border-radius: 0.4rem;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  background: transparent;
   cursor: pointer;
+  height: 2.2rem;
   input {
     width: 100%;
     height: 100%;
@@ -18,6 +16,7 @@ export const SearchBox = styled.div`
     color: #313233;
     font-size: 18px;
     font-weight: bold;
+    margin: 0 1rem;
   }
 `;
 
