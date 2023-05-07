@@ -82,7 +82,6 @@ function AdBanner() {
 export default AdBanner;
 
 const Container = styled.div`
-  margin: 1rem 0 0 0;
   overflow: hidden;
 `;
 

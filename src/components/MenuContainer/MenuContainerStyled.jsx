@@ -20,7 +20,6 @@ export const Logo = styled.div`
   min-width: 40px;
   justify-content: center;
   margin-top: -0.2rem;
-  margin-bottom: 0.9rem;
   rotate: 345deg;
 `;
 
@@ -32,6 +31,7 @@ export const SubMenu = styled.div`
   align-items: center;
   border-radius: 0.4rem;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  margin-top: 1rem;
 `;
 
 export const IconButton = styled.button`

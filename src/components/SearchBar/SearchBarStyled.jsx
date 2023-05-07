@@ -15,8 +15,9 @@ export const SearchBox = styled.div`
     border: none;
     color: #313233;
     font-size: 18px;
-    font-weight: bold;
-    margin: 0 1rem;
+    font-weight: 400;
+    margin: 0 0 0 0.8rem;
+    font-family: 'Poppins';
   }
 `;
 
