@@ -141,10 +141,6 @@ const SlideItem = styled.div`
     font-size: 0.8rem;
   }
 
-  @media screen and (min-width: 1280px) {
-    height: 30rem;
-  }
-
   @media screen and (min-width: 1500px) {
     height: 40rem;
   }
