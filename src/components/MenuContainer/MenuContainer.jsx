@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { GiRunningShoe } from "react-icons/gi";
 import { Container, Logo, SubMenu, IconButton } from "./MenuContainerStyled";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
@@ -7,12 +7,9 @@ import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { useDispatch } from "react-redux";
 import { openLoginPopupFunc } from "../../redux/actions/actions";
 import ToolTip from "../ToolTip/ToolTip";
-import FilterComp from "../FilterComp/FilterComp";
-import MobViewPopUp from "../MobMenuBar/MobViewPopUp";
 
 const MenuContainer = () => {
   const dispatch = useDispatch();
-  const [openOnTouchFilter, setOpenOnTouchFilter] = useState(false);
 
   // Icon Functions
   const AccountFunc = () => {
@@ -27,10 +24,6 @@ const MenuContainer = () => {
 
   const CartFunc = () => {};
 
-  const handleOnTouchFilter = () => {
-    setOpenOnTouchFilter(false);
-  };
-
   return (
     <Container>
       <Logo>
@@ -38,6 +31,7 @@ const MenuContainer = () => {
       </Logo>
       <SubMenu>
         <ToolTip
+          distance="0.1rem"
           label="Account"
           placement="right"
           element={
@@ -47,6 +41,7 @@ const MenuContainer = () => {
           }
         />
         <ToolTip
+        distance="0.1rem"
           label="Wishlist"
           placement="right"
           element={
@@ -56,6 +51,7 @@ const MenuContainer = () => {
           }
         />
         <ToolTip
+        distance="0.1rem"
           label="Cart"
           placement="right"
           element={
@@ -65,13 +61,6 @@ const MenuContainer = () => {
           }
         />
       </SubMenu>
-      {openOnTouchFilter && (
-        <MobViewPopUp
-          element={<FilterComp mobView={true} />}
-          open={openOnTouchFilter}
-          handleClose={handleOnTouchFilter}
-        />
-      )}
     </Container>
   );
 };

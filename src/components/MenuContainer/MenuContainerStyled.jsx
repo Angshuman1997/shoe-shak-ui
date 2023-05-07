@@ -35,18 +35,14 @@ export const SubMenu = styled.div`
 `;
 
 export const IconButton = styled.button`
-  width: 50px;
-  height: 50px;
-  min-width: 40px;
   border: none;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  margin: 8px 0;
+  margin: 1rem 0;
   transition: 0.3s;
   background: transparent;
-  color: ${(props) => (props.active ? "#ffffff" : "#000000")};
   svg{
     width: 2rem;
     height: 2rem;
