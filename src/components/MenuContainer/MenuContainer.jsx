@@ -7,14 +7,16 @@ import LocalMallIcon from "@mui/icons-material/LocalMall";
 import { useDispatch } from "react-redux";
 import { openLoginPopupFunc } from "../../redux/actions/actions";
 import ToolTip from "../ToolTip/ToolTip";
+import { useNavigate } from "react-router-dom";
 
 const MenuContainer = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // Icon Functions
   const AccountFunc = () => {
-    if (localStorage.getItem("logined")) {
-      console.log("go to /account");
+    if (localStorage.getItem("logined") === "true") {
+      navigate("/account");
     } else {
       dispatch(openLoginPopupFunc(true));
     }

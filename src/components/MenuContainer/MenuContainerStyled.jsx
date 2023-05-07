@@ -8,7 +8,7 @@ export const Container = styled.div`
   align-items: center;
   position: fixed;
   top: 0;
-  padding: 1.5rem 0 0 0;
+  padding: 0.5rem 0 0 0;
   @media screen and (max-width: 480px) {
     display: none;
   }
