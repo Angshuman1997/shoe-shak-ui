@@ -3,9 +3,11 @@ import styled from "styled-components";
 
 function AdBanner() {
   const colors = ["#0088FE", "#00C49F", "#e4e716", "#ff4d00"];
-  const delay = 4000;
+  const delay = 3000;
 
   const [index, setIndex] = React.useState(0);
+  const [hovered, setHovered] = React.useState(false);
+
   const timeoutRef = React.useRef(null);
 
   function resetTimeout() {
@@ -15,26 +17,37 @@ function AdBanner() {
   }
 
   React.useEffect(() => {
-    resetTimeout();
-    timeoutRef.current = setTimeout(
-      () =>
-        setIndex((prevIndex) =>
-          prevIndex === colors.length - 1 ? 0 : prevIndex + 1
-        ),
-      delay
-    );
-
-    return () => {
+    if (!hovered) {
       resetTimeout();
-    };
+      timeoutRef.current = setTimeout(
+        () =>
+          setIndex((prevIndex) =>
+            prevIndex === colors.length - 1 ? 0 : prevIndex + 1
+          ),
+        delay
+      );
+
+      return () => {
+        resetTimeout();
+      };
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index]);
+  }, [index, hovered]);
 
   return (
     <Container>
       <SliderContent indexVal={-index * 100}>
         {colors.map((backgroundColor, index) => (
-          <SlideItem key={index} backgroundColor={backgroundColor}>
+          <SlideItem
+            key={index}
+            backgroundColor={backgroundColor}
+            onMouseOver={() => {
+              setHovered(true);
+              setIndex(index);
+            }}
+            onMouseOut={()=>setHovered(false)}
+          >
             Hi
           </SlideItem>
         ))}
@@ -74,6 +87,7 @@ const SliderContent = styled.div`
 
 const SlideItem = styled.div`
   height: 20rem;
+  cursor: pointer;
   @media screen and (max-width: 800px) {
     font-size: 0.8rem;
   }
