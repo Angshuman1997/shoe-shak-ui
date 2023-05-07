@@ -21,6 +21,7 @@ export const Logo = styled.div`
   justify-content: center;
   margin-top: -0.2rem;
   margin-bottom: 0.9rem;
+  rotate: 345deg;
 `;
 
 export const SubMenu = styled.div`
@@ -37,18 +38,17 @@ export const IconButton = styled.button`
   width: 50px;
   height: 50px;
   min-width: 40px;
-  border-radius: 40%;
-  border: 2px solid #717273;
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  margin: 15px 0;
+  margin: 8px 0;
   transition: 0.3s;
-  background: ${(props) => (props.active ? "#000000" : "#ffffff")};
+  background: transparent;
   color: ${(props) => (props.active ? "#ffffff" : "#000000")};
-  &:hover {
-    background: #000000;
-    color: #ffffff;
+  svg{
+    width: 2rem;
+    height: 2rem;
   }
 `;

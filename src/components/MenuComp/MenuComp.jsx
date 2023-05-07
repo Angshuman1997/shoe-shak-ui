@@ -22,6 +22,7 @@ export default function MenuComp({ innerContent, btn }) {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
         sx={{
+          padding: "10px 0",
           border: "0.14rem solid #ffffff",
           marginLeft: "1rem",
           color: "#000000",

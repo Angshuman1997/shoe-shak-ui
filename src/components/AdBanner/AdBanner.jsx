@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 function AdBanner() {
   const colors = ["#0088FE", "#00C49F", "#e4e716", "#ff4d00"];
-  const delay = 2500;
+  const delay = 4000;
 
   const [index, setIndex] = React.useState(0);
   const timeoutRef = React.useRef(null);
@@ -118,7 +118,7 @@ const SlideDot = styled.div`
   width: 1.25rem;
   border-radius: 50%;
   margin: 15px 7px 0px;
-  background-color: ${(props) => (props.active ? "#6a0dad" : "#c4c4c4")};
+  background-color: ${(props) => (props.active ? "#3a3838" : "#c4c4c4")};
   @media screen and (max-width: 800px) {
     height: 0.5rem;
     width: 0.5rem;

@@ -11,9 +11,10 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 300,
   bgcolor: "background.paper",
-  border: "2px solid #000",
+  border: "2px solid #ffffff",
+  borderRadius: "0.5rem",
   boxShadow: 24,
-  p: 1,
+  p: 1.5,
   outline: 'none'
 };
 
@@ -41,7 +42,6 @@ export default function MobViewPopUp({ element, open, handleClose }) {
 const Content = styled.div`
   width: 100%;
   height: 100%;
-  padding: 0 0.5rem 0.5rem 0.5rem;
   margin-bottom: 1rem;
 `;
 const Top = styled.div`

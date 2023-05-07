@@ -4,7 +4,6 @@ import MenuItem from "@mui/material/MenuItem";
 import { FaBars } from "react-icons/fa";
 import styled from "styled-components";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
-import FilterAltOutlinedIcon from "@mui/icons-material/FilterAltOutlined";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
@@ -12,14 +11,11 @@ import { useDispatch } from "react-redux";
 import { openLoginPopupFunc } from "../../redux/actions/actions";
 import MobViewPopUp from "./MobViewPopUp";
 import ThemeComp from "../ThemeComp/ThemeComp";
-import FilterComp from "../FilterComp/FilterComp";
-import { Divider } from "@mui/material";
 
 export default function MobMenuBar() {
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [openPopupTheme, setOpenPopupTheme] = React.useState(false);
-  const [openPopupFilter, setOpenPopupFilter] = React.useState(false);
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -32,10 +28,6 @@ export default function MobMenuBar() {
 
   const handleCloseMobPopUpTheme = () => {
     setOpenPopupTheme(false);
-  };
-
-  const handleCloseMobPopUpFilter = () => {
-    setOpenPopupFilter(false);
   };
 
   const handleAccount = () => {
@@ -90,23 +82,6 @@ export default function MobMenuBar() {
             alignItems: "center",
           }}
           onClick={() => {
-            setOpenPopupFilter(true);
-            handleClose();
-          }}
-        >
-          <Logo>
-            <FilterAltOutlinedIcon />
-          </Logo>
-          <Text>Filter</Text>
-        </MenuItem>
-        <MenuItem
-          sx={{
-            width: "100%",
-            gridColumnGap: "6%",
-            display: "flex",
-            alignItems: "center",
-          }}
-          onClick={() => {
             setOpenPopupTheme(true);
             handleClose();
           }}
@@ -116,7 +91,6 @@ export default function MobMenuBar() {
           </Logo>
           <Text>Theme</Text>
         </MenuItem>
-        <Divider variant="middle" flexItem sx={{ border: "0.1rem solid #686262" }} />
         <MenuItem
           sx={{
             width: "100%",
@@ -164,11 +138,6 @@ export default function MobMenuBar() {
         element={<ThemeComp mobView={true} />}
         open={openPopupTheme}
         handleClose={handleCloseMobPopUpTheme}
-      />
-      <MobViewPopUp
-        element={<FilterComp mobView={true} />}
-        open={openPopupFilter}
-        handleClose={handleCloseMobPopUpFilter}
       />
     </React.Fragment>
   );

@@ -159,6 +159,7 @@ const Header = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 600;
   span {
     font-size: 1.2rem;
     padding: 0.5rem;
@@ -167,7 +168,7 @@ const Header = styled.div`
 `;
 
 const InnerContainer = styled.div`
-  margin: 0 0.5rem;
+  margin: 1rem 1rem 0 1rem;
 `;
 
 const InnerHeader = styled.div`
